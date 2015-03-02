@@ -1,0 +1,91 @@
+{% load i18n activelink %}
+
+<div class="sidebar-background">
+    <div class="primary-sidebar-background"></div>
+</div>
+
+<div class="primary-sidebar">
+
+    <!-- Main nav -->
+    <ul class="nav navbar-collapse collapse navbar-collapse-primary">
+
+        {# Events #}
+        <li class="">
+            <span class="glow"></span>
+            <a href="#">
+                <i class="icon-dashboard icon-2x"></i>
+                <span>{% trans 'Events' %}</span>
+            </a>
+        </li>
+
+        {# Reports #}
+        <li class="">
+            <span class="glow"></span>
+            <a href="#">
+                <i class="icon-edit icon-2x"></i>
+                <span>{% trans 'Reports' %}</span>
+            </a>
+        </li>
+
+        {# Customers #}
+        <li class="">
+            <span class="glow"></span>
+            <a href="">
+                <i class="icon-user-md icon-2x"></i>
+                <span>{% trans 'Customers' %}</span>
+            </a>
+        </li>
+
+        {# Map #}
+        <li class="">
+            <span class="glow"></span>
+            <a href="">
+                <i class="icon-map-marker icon-2x"></i>
+                <span>{% trans 'Map' %}</span>
+            </a>
+        </li>
+
+        {# Guestlist #}
+        <li class="">
+            <span class="glow"></span>
+            <a href="">
+                <i class="icon-list-alt icon-2x"></i>
+                <span>{% trans 'Guestlist' %}</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="hidden-sm hidden-xs">
+
+
+        <hr class="divider" style="margin-top: 60px">
+
+        <div class="sparkline-box side">
+
+            <div class="sparkline-row">
+                <h4 class="gray"><span>Orders</span> 847</h4>
+
+                <div class="sparkline big" data-color="gray"><!--16,11,10,14,8,23,19,3,13,29,13,10--></div>
+            </div>
+
+            <hr class="divider">
+            <div class="sparkline-row">
+                <h4 class="dark-green"><span>Income</span> $43.330</h4>
+
+                <div class="sparkline big" data-color="darkGreen"><!--18,12,17,29,12,15,17,4,15,27,29,26--></div>
+            </div>
+
+            <hr class="divider">
+            <div class="sparkline-row">
+                <h4 class="blue"><span>Reviews</span> 223</h4>
+
+                <div class="sparkline big" data-color="blue"><!--17,6,18,17,17,10,13,12,8,25,10,17--></div>
+            </div>
+
+            <hr class="divider">
+        </div>
+    </div>
+
+
+</div>

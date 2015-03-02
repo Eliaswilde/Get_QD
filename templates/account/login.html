@@ -1,0 +1,91 @@
+{% extends "account/base.html" %}
+
+{% load i18n account %}
+
+
+{% block title %}{% trans "Sign In" %}{% endblock %}
+
+{% block header %}
+    <nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">GetQd</a>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block login_box %}
+
+
+    <div class="box-header">
+        <span class="title">{% trans 'Login' %}</span>
+    </div>
+
+
+
+    <div class="box-content padded">
+        <form class="separate-sections" method='POST' action="{% url 'account_login' %}">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class='alert alert-error'>{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <div class="input-group addon-left">
+
+            <span class="input-group-addon" href="#">
+              <i class="icon-user"></i>
+
+            </span>
+                <input type="text" name="login" placeholder="username">
+            </div>
+            {% if form.errors.login %}
+                <div class='alert alert-error'>{{ form.errors.login }}</div>
+            {% endif %}
+
+
+            <div class="input-group addon-left">
+            <span class="input-group-addon" href="#">
+              <i class="icon-key"></i>
+            </span>
+                <input name="password" type="password" placeholder="password">
+            </div>
+            {% if form.errors.password %}
+                <div class='alert alert-error'>{{ form.errors.password }}</div>
+            {% endif %}
+
+            {#            <div>#}
+            {#                <input type="checkbox" name="remember" checked="checked">#}
+            {#                <span> {% trans 'Remember me' %}</span>#}
+            {#            </div>#}
+
+            <div>
+                <button class="btn btn-blue btn-block">
+                    {% trans 'Login' %} <i class="icon-signin"></i>
+                </button>
+            </div>
+
+        </form>
+
+        <div>
+            <a href="{% url 'account_signup' %}">
+                {% trans "Don't have an account?" %} <strong>{% trans 'Sign Up' %}</strong>
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'account_reset_password' %}">
+                <strong>{% trans "Forgot your password?" %}</strong>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+{% block login_footer %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <a href="#" class="btn btn-facebook btn-block"><i class="icon-facebook-sign"></i> Facebook</a>
+        </div>
+        <div class="col-md-6">
+            <a href="#" class="btn btn-twitter btn-block"><i class="icon-twitter"></i> Twitter</a>
+        </div>
+    </div>
+{% endblock %}

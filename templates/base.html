@@ -1,0 +1,79 @@
+{% load i18n compress staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}GetQd{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="description" content="{% block meta-description %}{{ meta_description|safe|striptags }}{% endblock %}">
+    <meta name="keywords" content="{% block meta-keywords %}{{ meta_keywords|safe|striptags }}{% endblock %}">
+
+    {% block css_wparap %}
+        {% compress css %}
+            {#            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap/bootstrap.min.css"#}
+            media="screen"/>
+            {#            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap/bootstrap-theme.css"#}
+            media="screen"/>
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/lib/messenger/css/messenger.css"
+                  media="screen"/>
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/lib/messenger/css/messenger-spinner.css"
+                  media="screen"/>
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/lib/messenger/css/messenger-theme-future.css"
+                  media="screen"/>
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}less/main.css" media="screen"/>
+        {% endcompress %}
+        {% block css %}{% endblock %}
+    {% endblock %}
+</head>
+<body ng-app="app">
+{% block header %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+
+{% block js_wrap %}
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    {% compress js %}
+        {# Core #}
+        <script src="{{ STATIC_URL }}js/lib/jquery/jquery.min.js"></script>
+        <script src="{{ STATIC_URL }}js/lib/jquery-ui/ui/jquery-ui.js"></script>
+        <script src="{{ STATIC_URL }}js/application.js"></script>
+        <script src="{{ STATIC_URL }}js/lib/angular/angular.js"></script>
+        {# Dependencies #}
+        <script src="{{ STATIC_URL }}js/lib/angular-bootstrap/ui-bootstrap.js"></script>
+        {# APP #}
+        <script src="{{ STATIC_URL }}js/app/app.js"></script>
+        {# Extras #}
+        <script src="{{ STATIC_URL }}js/lib/messenger/js/messenger.min.js"></script>
+
+    {% endcompress %}
+
+    {% if not COMPRESS_ENABLED %}
+        <script type="text/javascript" src="{% static 'js/less.js' %}"></script>
+    {% endif %}
+    {% block js %}{% endblock %}
+{% endblock %}
+
+<script>
+    {% if messages %}
+        Messenger.options = {
+            extraClasses: 'messenger-fixed messenger-on-top',
+            theme: 'future'
+        };
+        window.onload = function () {
+            {% for message in messages %}
+                Messenger().post({
+                    message: '{{ message|safe|addslashes }}',
+                    type: '{{ message.tags }}',
+                    showCloseButton: true
+                });
+            {% endfor %}
+        };
+    {% endif %}
+</script>
+</body>
+</html>
